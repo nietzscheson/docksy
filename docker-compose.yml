@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+  db:
+    image: mysql
+    user: "1000:1000"
+    volumes:
+      - ${MYSQL_DATA_PATH}:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - 3306:3306
+  php:
+    #image: php:7.0-fpm
+    build: php  
+    volumes:
+      - ${APP_PATH}:/var/www/html
+  nginx:
+    build: nginx
+    ports:
+      - 80:80
+    volumes_from:
+      - php
+    volumes: 
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+
