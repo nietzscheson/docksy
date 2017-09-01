@@ -1,0 +1,13 @@
+version: '2'
+
+syncs:
+  app-sync:
+    src: ${APP_PATH}
+    notify_terminal: true
+    sync_host_ip: 'auto'
+    sync_userid: '33'
+    sync_exclude: ["vendor", "var",".idea"]
+#  php-logs-sync:
+#    src: ./logs/symfony
+#  db-sync:
+#    src: ~/.data/db
