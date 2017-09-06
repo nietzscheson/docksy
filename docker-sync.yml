@@ -6,7 +6,13 @@ syncs:
     notify_terminal: true
     sync_host_ip: 'auto'
     sync_userid: '33'
-    sync_exclude: ["vendor", "var",".idea"]
+    sync_exclude: [${APP_PATH}/vendor, ${APP_PATH}/var,${APP_PATH}/.idea]
+  app-sync-vendor:
+    src: ${APP_PATH}/vendor
+    sync_args: '--delete'
+    sync_strategy: 'rsync'
+    sync_host_port: 10872
+    sync_excludes: ["bin/"]
 #  php-logs-sync:
 #    src: ./logs/symfony
 #  db-sync:

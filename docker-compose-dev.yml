@@ -17,6 +17,7 @@ services:
     build: php  
     volumes:
       - app-sync:/var/www/html
+      - app-sync-vendor:/opt/proj/vendor
   nginx:
     build: nginx
     ports:
@@ -27,4 +28,6 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
 volumes:
   app-sync:
+    external: true
+  app-sync-vendor:
     external: true
